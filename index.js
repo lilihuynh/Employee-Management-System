@@ -141,3 +141,60 @@ function addNewRoles() {
 
     });
 }
+
+function addNewEmployee() {
+    var query = "SELECT * FROM roles"
+    connection.query(query, function (err, res) {
+        if (err) throw err;
+        var rolesList = res.title;
+        console.log(rolesList);
+        inquirer
+            .prompt([
+
+                {
+                    name: "firstName",
+                    type: "input",
+                    message: "What is the employee's first name?",
+                },
+
+                {
+                    name: "lastName",
+                    type: "input",
+                    message: "What is the employee's last name?",
+                },
+
+                {
+                    name: "newRole",
+                    type: "list",
+                    message: "What is the employee's role?",
+                    choices: rolesList
+                },
+
+                {
+                    name: "managerName",
+                    type: "input",
+                    message: "Who is the employee's manager?",
+                },
+
+            ]).then(function (answer) {
+                var query = "INSERT INTO employees SET ?"
+                connection.query(query,
+                    {
+                        first_name: answer.firstName,
+                        last_name: answer.lastName,
+                        role_id: answer.id //
+
+                    },
+                    function (err, res) {
+                        if (err) throw err;
+                        for (var i = 0; i < res.length; i++) {
+                            console.log(
+                                "id: " + res[i].id +
+                                " ||  Department Name: " + res[i].name
+                            );
+                        }
+                        start();
+                    });
+            })
+    })
+}
