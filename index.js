@@ -27,3 +27,55 @@ connection.connect(function (err) {
   console.log("               |_|            |___/                                              ");
   start();
 });
+
+function start() {
+    inquirer
+      .prompt({
+        name: "action",
+        type: "list",
+        message: "What would you like to do?",
+        choices:
+          [
+            "Add new department",
+            "Add new roles",
+            "Add new employees",
+            "View departments",
+            "View roles",
+            "View all employees",
+            "Update employee roles",
+            "Exit"
+          ]
+      })
+      .then(function (answer) {
+       
+        switch (answer.action) {
+          case "Add new department":
+            addNewDepartment();
+            break;
+          case "Add new roles":
+            addNewRoles();
+            break;
+          case "Add new employees":
+            addNewEmployee();
+            break;
+          case "View departments":
+            viewDeparments();
+            break;
+          case "View roles":
+            viewRoles();
+            break;
+          case "View all employees":
+            viewEmployees();
+            break;
+          case "Update employee roles":
+            updateEmployeeRoles();
+            break;
+          case "exit":
+            connection.end();
+            break;
+        }
+  
+      });
+  
+  
+  }
