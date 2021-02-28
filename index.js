@@ -232,16 +232,16 @@ function viewRoles() {
 function viewEmployees() {
     var query = "SELECT * FROM employee"
     connection.query(query, function (err, res) {
-      if (err) throw err;
-      for (var i = 0; i < res.length; i++) {
-        console.log(
-          "id: " + res[i].id +
-          " ||  First name: " + res[i].first_name +
-          " ||  Last name: " + res[i].last_name +
-          " ||  Role id: " + res[i].role_id +
-          " ||  Manager id: " + res[i].manager_id
-        );
-      }
-      start();
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++) {
+            console.log(
+                "id: " + res[i].id +
+                " ||  First name: " + res[i].first_name +
+                " ||  Last name: " + res[i].last_name +
+                " ||  Role id: " + res[i].role_id +
+                " ||  Manager id: " + res[i].manager_id
+            );
+        }
+        start();
     });
-  }
+}
