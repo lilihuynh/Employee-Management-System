@@ -198,3 +198,17 @@ function addNewEmployee() {
             })
     })
 }
+
+function viewDeparments() {
+    var query = "SELECT * FROM department"
+    connection.query(query, function (err, res) {
+      if (err) throw err;
+      for (var i = 0; i < res.length; i++) {
+        console.log(
+          "id: " + res[i].id +
+          " ||  Department Name: " + res[i].name
+        );
+      }
+      start();
+    });
+  }
